@@ -51,13 +51,11 @@ class tly(object):
             Code_Url = 'https://' + domain + '/modules/_checkin.php?captcha=' + yzm
             # print(Code_Url)
             data = self.session.get(str(Code_Url), headers=self.header)
-            data.encoding = data.apparent_encoding
         except Exception as e:
             print('Project_Error...')
             with open("Error.data", 'a+', encoding='utf-8') as f:
                 f.write(str(datetime.datetime.now()) + ':' + str(e) + '\n')
         else:
-            print(data.text)
             result = re.findall(r'<script>alert(.*);self.location=document.referrer;</script>', data.text)
             if result[0].encode('utf8') == "('验证码错误!')":
                 print('%s' % (result[0]))
