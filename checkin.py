@@ -57,15 +57,19 @@ class tly(object):
                 f.write(str(datetime.datetime.now()) + ':' + str(e) + '\n')
         else:
             result = re.findall(r'<script>alert(.*);self.location=document.referrer;</script>', data.text)
-            if result[0].encode('utf8') == "('验证码错误!')":
-                print('%s' % (result[0]))
-                self.get_cat(domain)
+            # 已签到的情况下result为空
+            if result:
+                if result[0].encode('utf8') == "('验证码错误!')":
+                    print('%s' % (result[0]))
+                    self.get_cat(domain)
+                else:
+                    with open('ok.jj', 'a+') as f:
+                        f.write(str(datetime.datetime.now()) + ':' + str(result[0]) + '\n')
+                    print('%s' % (result[0]))
+                    if self.sever == "on":
+                        req.get('https://sc.ftqq.com/' + self.sckey + '.send?text=' + re.sub("[()]", "", result[0]))
             else:
-                with open('ok.jj', 'a+') as f:
-                    f.write(str(datetime.datetime.now()) + ':' + str(result[0]) + '\n')
-                print('%s' % (result[0]))
-                if self.sever == "on":
-                    req.get('https://sc.ftqq.com/' + self.sckey + '.send?text=' + re.sub("[()]", "", result[0]))
+                print('已签到完成，请勿重复签到！')
 
     def login(self, domain='tly.com'):
         """登录tly.com"""
