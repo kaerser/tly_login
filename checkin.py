@@ -6,8 +6,10 @@ import re, os
 from time import sleep
 import baiduyun_captcha
 
-import sys, imp
+from importlib import reload
+import sys
 imp.reload(sys)
+sys.setdefaultencoding("utf-8")
 
 class tly(object):
     """docstring for ClassName"""
