@@ -1,6 +1,4 @@
 # -*- coding:utf-8 -*-
-from imp import reload
-
 import requests as req
 import json
 import datetime
@@ -8,9 +6,8 @@ import re, os
 from time import sleep
 import baiduyun_captcha
 
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+import sys, imp
+imp.reload(sys)
 
 class tly(object):
     """docstring for ClassName"""
