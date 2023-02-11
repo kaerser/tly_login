@@ -57,7 +57,7 @@ class tly(object):
                 f.write(str(datetime.datetime.now()) + ':' + str(e) + '\n')
         else:
             result = re.findall(r'<script>alert(.*);self.location=document.referrer;</script>', data.text)
-            print(result[0],type(result[0]))
+            print(result,type(result))
             if result[0].encode('utf8') == "('验证码错误!')":
                 print('%s' % (result[0]))
                 self.get_cat(domain)
