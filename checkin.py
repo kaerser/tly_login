@@ -51,6 +51,7 @@ class tly(object):
             Code_Url = 'https://' + domain + '/modules/_checkin.php?captcha=' + yzm
             # print(Code_Url)
             data = self.session.get(str(Code_Url), headers=self.header)
+            data.encoding = data.apparent_encoding
         except Exception as e:
             print('Project_Error...')
             with open("Error.data", 'a+', encoding='utf-8') as f:
