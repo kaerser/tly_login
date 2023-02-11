@@ -8,7 +8,7 @@ import baiduyun_captcha
 
 from importlib import reload
 import sys
-imp.reload(sys)
+reload(sys)
 sys.setdefaultencoding("utf-8")
 
 class tly(object):
