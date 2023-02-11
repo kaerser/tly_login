@@ -56,7 +56,7 @@ class tly(object):
             with open("Error.data", 'a+', encoding='utf-8') as f:
                 f.write(str(datetime.datetime.now()) + ':' + str(e) + '\n')
         else:
-            print(data.text)
+            print(data.content)
             result = re.findall(r'<script>alert(.*);self.location=document.referrer;</script>', data.text)
             if result[0].encode('utf8') == "('验证码错误!')":
                 print('%s' % (result[0]))
