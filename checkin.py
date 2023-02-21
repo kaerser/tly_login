@@ -52,7 +52,7 @@ class tly(object):
             code_url = 'https://' + domain + '/modules/_checkin.php?captcha=' + captcha_code
             # print(code_url)
             data = self.session.get(str(code_url), headers=self.header)
-            print(data.history)
+            print(data.request.url)
         except Exception as e:
             print('Project Error...')
             with open("Error.data", 'a+', encoding='utf-8') as f:
