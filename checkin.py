@@ -48,9 +48,10 @@ class tly(object):
             content = self.session.get(self.captcha_url.format(domain), headers=self.header).content
             yzm = baiduyun_captcha.captche_main(image_data=content, ak=self.api_key, sk=self.secret_key)
             print(yzm)
-            Code_Url = 'https://' + domain + '/modules/_checkin.php?captcha=' + yzm
-            # print(Code_Url)
-            data = self.session.get(str(Code_Url), headers=self.header)
+            code_url = 'https://' + domain + '/modules/_checkin.php?captcha=' + yzm
+            # print(code_url)
+            data = self.session.get(str(code_url), headers=self.header)
+            print(data.text)
         except Exception as e:
             print('Project_Error...')
             with open("Error.data", 'a+', encoding='utf-8') as f:
@@ -80,12 +81,12 @@ class tly(object):
             Login_data = json.loads(html.text)
             print(Login_data['msg'])
         except Exception as e:
-            print('Login_Error')
+            print('Login Error!')
             with open("Error.data", 'a+', encoding='utf-8') as f:
                 f.write(str(datetime.datetime.now()) + '：' + str(e) + '\n')
         else:
             if Login_data['ok'] == '1':
-                print('Login_Ok!')
+                print('Login OK!')
                 self.get_cat(domain)
 
     def run(self):
