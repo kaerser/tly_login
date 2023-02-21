@@ -49,10 +49,11 @@ class tly(object):
             #captcha_code = baiduyun_captcha.captche_main(image_data=content, ak=self.api_key, sk=self.secret_key)
             captcha_code = '1234'
             print(captcha_code)
-            code_url = 'https://' + domain + '/modules/_checkin.php?captcha=' + captcha_code
+            #code_url = 'https://' + domain + '/modules/_checkin.php?captcha=' + captcha_code
+            code_url = 'https://' + domain + '/modules/_checkin.php'
             # print(code_url)
             data = self.session.get(str(code_url), headers=self.header)
-            print(data.request.url)
+            print(data.text)
         except Exception as e:
             print('Project Error...')
             with open("Error.data", 'a+', encoding='utf-8') as f:
