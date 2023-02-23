@@ -45,15 +45,12 @@ class tly(object):
     def get_cat(self, domain):
         """获取&识别验证码"""
         try:
-            #content = self.session.get(self.captcha_url.format(domain), headers=self.header).content
-            #captcha_code = baiduyun_captcha.captche_main(image_data=content, ak=self.api_key, sk=self.secret_key)
-            captcha_code = '1234'
+            content = self.session.get(self.captcha_url.format(domain), headers=self.header).content
+            captcha_code = baiduyun_captcha.captche_main(image_data=content, ak=self.api_key, sk=self.secret_key)
             print(captcha_code)
-            #code_url = 'https://' + domain + '/modules/_checkin.php?captcha=' + captcha_code
-            code_url = 'https://' + domain + '/modules/_checkin.php'
+            code_url = 'https://' + domain + '/modules/_checkin.php?captcha=' + captcha_code
             # print(code_url)
             data = self.session.get(str(code_url), headers=self.header)
-            print(data.text)
         except Exception as e:
             print('Project Error...')
             with open("Error.data", 'a+', encoding='utf-8') as f:
