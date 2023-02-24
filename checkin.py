@@ -7,7 +7,7 @@ from time import sleep
 import baiduyun_captcha
 
 
-class tly(object):
+class Tly(object):
     """docstring for ClassName"""
 
     def __init__(self):
@@ -106,5 +106,6 @@ class tly(object):
 
 
 if __name__ == '__main__':
-    bc = tly()
-    bc.login()
+    login_domain = 'tly.com'
+    bc = Tly()
+    bc.login(domain=login_domain)
